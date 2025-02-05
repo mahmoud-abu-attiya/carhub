@@ -32,6 +32,7 @@ export default function CustomFilter({ options, setFilter }: any) {
           >
             <ListboxOptions className='custom-filter__options'>
               {/* Map over the options and display them as listbox options */}
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {options.map((option: any) => (
                 <ListboxOption
                   key={option.title}
