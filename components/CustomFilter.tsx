@@ -2,8 +2,9 @@
 
 import { Fragment, useState } from "react";
 import Image from "next/image";
-import { Listbox, Transition } from "@headlessui/react";
+import { Listbox, Transition, ListboxButton, ListboxOptions, ListboxOption } from "@headlessui/react";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CustomFilter({ options, setFilter }: any) {
   const [selected, setSelected] = useState(options[0]); // State for storing the selected option
 
@@ -18,10 +19,10 @@ export default function CustomFilter({ options, setFilter }: any) {
       >
         <div className='relative w-fit z-10'>
           {/* Button for the listbox */}
-          <Listbox.Button className='custom-filter__btn'>
+          <ListboxButton className='custom-filter__btn'>
             <span className='block truncate'>{selected.title}</span>
             <Image src='/chevron-up-down.svg' width={20} height={20} className='ml-4 object-contain' alt='chevron_up-down' />
-          </Listbox.Button>
+          </ListboxButton>
           {/* Transition for displaying the options */}
           <Transition
             as={Fragment} // group multiple elements without introducing an additional DOM node i.e., <></>
@@ -29,14 +30,14 @@ export default function CustomFilter({ options, setFilter }: any) {
             leaveFrom='opacity-100'
             leaveTo='opacity-0'
           >
-            <Listbox.Options className='custom-filter__options'>
+            <ListboxOptions className='custom-filter__options'>
               {/* Map over the options and display them as listbox options */}
-              {options.map((option) => (
-                <Listbox.Option
+              {options.map((option: any) => (
+                <ListboxOption
                   key={option.title}
-                  className={({ active }) =>
+                  className={({ focus }) =>
                     `relative cursor-default select-none py-2 px-4 ${
-                      active ? "bg-red-900 text-white" : "text-gray-900"
+                      focus ? "bg-red-900 text-white" : "text-gray-900"
                     }`
                   }
                   value={option}
@@ -48,9 +49,9 @@ export default function CustomFilter({ options, setFilter }: any) {
                       </span>
                     </>
                   )}
-                </Listbox.Option>
+                </ListboxOption>
               ))}
-            </Listbox.Options>
+            </ListboxOptions>
           </Transition>
         </div>
       </Listbox>

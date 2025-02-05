@@ -4,6 +4,7 @@ import { Combobox, Transition, ComboboxButton, ComboboxOptions, ComboboxInput, C
 
 import { manufacturers } from "@/constants";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SearchManufacturer = ({ selected, setSelected }: any) => {
   const [query, setQuery] = useState("");
 
@@ -64,14 +65,14 @@ const SearchManufacturer = ({ selected, setSelected }: any) => {
                 filteredManufacturers.map((item) => (
                   <ComboboxOption
                     key={item}
-                    className={({ active }) =>
+                    className={({ focus }) =>
                       `relative search-manufacturer__option ${
-                        active ? "bg-red-900 text-white" : "text-gray-900"
+                        focus ? "bg-red-900 text-white" : "text-gray-900"
                       }`
                     }
                     value={item}
                   >
-                    {({ selected, active }) => (
+                    {({ selected, focus }) => (
                       <>
                         <span className={`block truncate ${selected ? "font-medium" : "font-normal"}`}>
                           {item}
@@ -79,7 +80,7 @@ const SearchManufacturer = ({ selected, setSelected }: any) => {
 
                         {/* Show an active blue background color if the option is selected */}
                         {selected ? (
-                          <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active? "text-white": "text-pribg-primary-purple"}`}
+                          <span className={`absolute inset-y-0 left-0 flex items-center pl-3 ${focus? "text-white": "text-pribg-primary-purple"}`}
                           ></span>
                         ) : null}
                       </>
