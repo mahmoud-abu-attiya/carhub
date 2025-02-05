@@ -68,7 +68,7 @@ export default function Home() {
               ))}
             </div>) : (
               <div className="flex-center mt-16 w-full">
-                <Image src={'./loader.svg'} alt={'loader'} className="object-contain animate-spin" width={50} height={50} />
+                <Image src={'./loader.svg'} alt={'loader'} className="object-contain animate-spin invert" width={50} height={50} />
               </div>
             )}
           </section>
